@@ -45,7 +45,7 @@ def df_maker_subito(url):
 
         final_df["Price (€)"] = final_df["Price (€)"].apply(lambda x: (str(x).split("€")[0]).strip())
         final_df["Price (€)"] = final_df["Price (€)"].apply(lambda x: "".join(str(x).split(".")))
-        final_df["Price (€)"] = final_df["Price (€)"].apply(lambda x: float(x))
+        #final_df["Price (€)"] = final_df["Price (€)"].apply(lambda x: float(x))
 
         return final_df.sort_values(by = "Price (€)").reset_index().iloc[:,1:]
         

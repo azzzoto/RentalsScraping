@@ -7,6 +7,7 @@ def next_page_idealista(num, url):
   stringa = f"/lista-{num}.htm"
   return url + stringa
 
+"""
 from bs4 import BeautifulSoup
 from selenium import webdriver
 
@@ -27,3 +28,4 @@ resp = driver.page_source
 SearchContent = bs4.BeautifulSoup(resp.content, "html.parser")
 
 print(SearchContent, type(SearchContent))
+"""
