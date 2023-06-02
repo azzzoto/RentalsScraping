@@ -4,8 +4,18 @@ from tqdm import tqdm
 import pandas as pd
 
 def next_page_immobiliare(num, url):
-  stringa = f"?pag={num}"
-  return url + stringa
+    """this function is needed to get the next page of the url we're scraping.
+    It's customized for the immobiliare_scraper function
+
+    Args:
+        num (int): identifier of the page number we're looking at
+        url (link): url of the page we're scraping 
+
+    Returns:
+        str: updated string with the new link at the new page
+    """
+    stringa = f"?pag={num}"
+    return url + stringa
 
 def price_formatter_immobiliare(str_price):
     str_price = (str_price.split("/")[0].split("€")[-1].strip())
