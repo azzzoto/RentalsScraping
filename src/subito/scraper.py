@@ -24,14 +24,22 @@ def df_maker_subito(url):
             price = product.find('p')
             name = product.find('h2')
 
-            descrizione = requests.get(link)
-            zuppa = bs4.BeautifulSoup(descrizione.text, "html.parser")
-            #text_descr = zuppa.find(class_ = "grid_detail-component__7sBtj grid_description__rEv3i")
-            #annuncio_txt_descr = text_descr.find('p').contents[0]
+            #TODO 
+            # qui ho momentaneamente commentato il codice per evitare che lo scraper dovesse
+            # fare "inner-scraping" all'interno dello stesso annuncio per andare più veloce 
+            # ma sarebbe da sistemare l'aggiunta di altri dettagli tra cui la data di inserimento
 
-            #qui data
-            data_aggiunta = zuppa.find(class_ = "index-module_sbt-text-atom__ed5J9 index-module_token-caption__TaQWv size-normal index-module_weight-book__WdOfA index-module_insertion-date__MU4AZ")
-            data_annuncio = data_aggiunta.text
+            #descrizione = requests.get(link)
+            #zuppa = bs4.BeautifulSoup(descrizione.text, "html.parser")
+            ##text_descr = zuppa.find(class_ = "grid_detail-component__7sBtj grid_description__rEv3i")
+            ##annuncio_txt_descr = text_descr.find('p').contents[0]
+#
+            ##qui data
+            #data_aggiunta = zuppa.find(class_ = "index-module_sbt-text-atom__ed5J9 index-module_token-caption__TaQWv size-normal index-module_weight-book__WdOfA index-module_insertion-date__MU4AZ")
+            #data_annuncio = data_aggiunta.text
+
+            #temporary, see comment above
+            data_annuncio = "No_Data"
 
             if len(price) > 0:
                 constructor.append((name.contents[0], price.contents[0], link, data_annuncio))
