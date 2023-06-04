@@ -1,13 +1,9 @@
-import numpy as np
-from tqdm import tqdm
-from datetime import datetime
 import pandas as pd
-import requests
 
+from updater import update_results
 from src.telegram_utils import create_message
 from src.subito.scraper import subito_flats
 from src.immobiliare.scraper import immobiliare_flats
-from updater import update_results
 
 #bot settings
 TOKEN = "6285394546:AAGn-Z-iwI-jY6RPguUdyBpt16JXGq-tByo"
