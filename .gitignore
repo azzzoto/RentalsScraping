@@ -1,7 +1,3 @@
-#Excels files
-
-*.xlsx
-
 #subdirs
 */EnvRentalsScraping
 */Scripts
