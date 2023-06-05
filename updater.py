@@ -1,11 +1,16 @@
 import pandas as pd
+import os
 from src.telegram_utils import create_message
 
 def update_results(final_results, TOKEN, chat_id):
-    #leggo gli appartamenti trovati nel DB
-    historic_data = pd.read_excel("DB.xlsx", "Sheet1")
-    link_storico = historic_data.Link
-
+    #leggo gli appartamenti trovati nel DB se lo trova altrimenti lo scrive nuovo
+    if os.path.isfile("./DB.xlsx"):
+        historic_data = pd.read_excel("DB.xlsx", "Sheet1")
+        link_storico = historic_data.Link
+    else:
+        final_results.to_excel("DB.xlsx", index = False)
+        link_storico = final_results.Link
+    
     #verifico se tra quelli nuovi trovati ce ne siano di mai visti nel DB
     new_flats_links = list(set(final_results.Link)-set(link_storico))
 
