@@ -1,15 +1,7 @@
 import logging
-
-from telegram import Update
-from telegram.ext import Application, CommandHandler, ContextTypes
-
 import pandas as pd
-
-from updater import update_results
-from bot import remove_job_if_exists, start, unset, set_search
-from utils import create_telegram_message, create_URLs
-from src.subito.scraper import subito_flats
-from src.immobiliare.scraper import immobiliare_flats
+from telegram.ext import Application, CommandHandler
+from bot import start, unset, set_search
 
 #bot settings - qui dovresti importarlo direttamente come file e non così zozzo
 TOKEN = "6285394546:AAGn-Z-iwI-jY6RPguUdyBpt16JXGq-tByo"
