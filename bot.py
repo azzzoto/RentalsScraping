@@ -37,6 +37,7 @@ async def set_search(update: Update, context: ContextTypes.DEFAULT_TYPE) -> list
         text = "Ricerca settata correttamente!"
         job_removed = remove_job_if_exists(str(chat_id), context)
     
+        await update.effective_message.reply_text(text)
         context.job_queue.run_once(
             searcher_appartamenti(r, p, c, TOKEN, chat_id), 
             when=0, 
@@ -46,7 +47,6 @@ async def set_search(update: Update, context: ContextTypes.DEFAULT_TYPE) -> list
         
         if job_removed:
             text += "La ricerca precedente è stata eliminata."
-        await update.effective_message.reply_text(text)
 
     except (IndexError, ValueError):
         await update.effective_message.reply_text("Try again: '/ImpostaRicerca <regione provincia città>'")

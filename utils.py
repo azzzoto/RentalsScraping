@@ -1,5 +1,7 @@
 import requests
 import pandas as pd
+import os
+
 from src.immobiliare.scraper import immobiliare_flats
 from src.subito.scraper import subito_flats
 
@@ -45,8 +47,13 @@ def create_URLs(regione, provincia, città):
 
 def update_results(final_results, TOKEN, chat_id):
     #leggo gli appartamenti trovati nel DB
-    historic_data = pd.read_excel("DB.xlsx", "Sheet1")
-    link_storico = historic_data.Link
+
+    if os.path.isfile(f"DB_{chat_id}.xlsx"):
+        historic_data = pd.read_excel(f"DB_{chat_id}.xlsx", "Sheet1")
+        link_storico = historic_data.Link
+    else:
+        historic_data = pd.DataFrame(columns=["Name", "Price (€)", "Link", "Data Annuncio", "Città"])
+        link_storico = []
 
     #verifico se tra quelli nuovi trovati ce ne siano di mai visti nel DB
     new_flats_links = list(set(final_results.Link)-set(link_storico))
@@ -59,7 +66,7 @@ def update_results(final_results, TOKEN, chat_id):
         new_data = pd.concat([historic_data, new_records_to_add_to_DB])
 
         #sovrascrivo il file
-        new_data.to_excel("DB.xlsx", index = False)
+        new_data.to_excel(f"DB_{chat_id}.xlsx", index = False)
         create_telegram_message(TOKEN, chat_id, f"Trovati {len(new_records_to_add_to_DB)} nuovi appartamenti")
 
         #mi scrivo i nuovi appartamenti
