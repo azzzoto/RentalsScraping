@@ -1,5 +1,5 @@
 import pandas as pd
-from src.telegram_utils import create_message
+from src.utils import create_telegram_message
 
 def update_results(final_results, TOKEN, chat_id):
     #leggo gli appartamenti trovati nel DB
@@ -18,10 +18,10 @@ def update_results(final_results, TOKEN, chat_id):
 
         #sovrascrivo il file
         new_data.to_excel("DB.xlsx", index = False)
-        create_message(TOKEN, chat_id, f"Trovati {len(new_records_to_add_to_DB)} nuovi appartamenti")
+        create_telegram_message(TOKEN, chat_id, f"Trovati {len(new_records_to_add_to_DB)} nuovi appartamenti")
 
         #mi scrivo i nuovi appartamenti
         for annuncio in new_records_to_add_to_DB.values:
-            create_message(TOKEN, chat_id, annuncio)
+            create_telegram_message(TOKEN, chat_id, annuncio)
     else:
-        create_message(TOKEN, chat_id, "Nessun nuovo appartamento trovato")
+        create_telegram_message(TOKEN, chat_id, "Nessun nuovo appartamento trovato")

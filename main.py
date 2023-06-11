@@ -1,7 +1,7 @@
 import pandas as pd
 
 from updater import update_results
-from src.telegram_utils import create_message
+from src.utils import create_telegram_message
 from src.subito.scraper import subito_flats
 from src.immobiliare.scraper import immobiliare_flats
 
@@ -26,25 +26,25 @@ def main():
                --> città di {città.capitalize()}"""
 
     #create starting message
-    create_message(TOKEN, chat_id, starting_text)
-    create_message(TOKEN, chat_id, "Starting flat search...")
+    create_telegram_message(TOKEN, chat_id, starting_text)
+    create_telegram_message(TOKEN, chat_id, "Starting flat search...")
 
     #----------------------------------------------immobiliare.it----------------------------------------------
     immobiliare_results, n_immobiliare = immobiliare_flats(url_immobiliare, città)
     #create message with first round of scraping
-    create_message(TOKEN, chat_id, f"Numero di appartamenti trovati su Immobiliare.it: {n_immobiliare}")
+    create_telegram_message(TOKEN, chat_id, f"Numero di appartamenti trovati su Immobiliare.it: {n_immobiliare}")
 
     #------------------------------------------------subito.it--------------------------------------------------
     subito_results, n_subito = subito_flats(url_subito, città)
     #create message with first round of scraping
-    create_message(TOKEN, chat_id, f"Numero di appartamenti trovati su Subito.it: {n_subito}")
+    create_telegram_message(TOKEN, chat_id, f"Numero di appartamenti trovati su Subito.it: {n_subito}")
 
     #----------------------------------------------idealista.it------------------------------------------------
     #TODO!
 
     #---------------------------------------------FINAL RESULTS------------------------------------------------
     tot_apt = n_subito + n_immobiliare
-    create_message(TOKEN, chat_id, f"Totale appartamenti trovati: {tot_apt}")
+    create_telegram_message(TOKEN, chat_id, f"Totale appartamenti trovati: {tot_apt}")
     final_results = pd.concat([subito_results, immobiliare_results])
 
     update_results(final_results, TOKEN, chat_id)
