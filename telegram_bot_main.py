@@ -7,7 +7,7 @@ import pandas as pd
 
 from updater import update_results
 from bot import remove_job_if_exists, start, unset, set_search
-from src.utils import create_telegram_message, create_URLs
+from utils import create_telegram_message, create_URLs
 from src.subito.scraper import subito_flats
 from src.immobiliare.scraper import immobiliare_flats
 

@@ -1,6 +1,6 @@
 from telegram.ext import Application, CommandHandler, ContextTypes
 from telegram import Update
-from src.utils import searcher_appartamenti
+from utils import searcher_appartamenti
 
 def remove_job_if_exists(name: str, context: ContextTypes.DEFAULT_TYPE) -> bool:
     """Remove job with given name. Returns whether job was removed."""
