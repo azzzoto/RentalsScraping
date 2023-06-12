@@ -71,14 +71,7 @@ def update_results(final_results, TOKEN, chat_id):
 def searcher_appartamenti(regione, provincia, città, TOKEN, chat_id):
     url_immobiliare, url_subito = create_URLs(regione, provincia, città)
 
-    #initial message creation 
-    starting_text = f"""Creazione di una ricerca automatizzata per appartamenti
-               --> regione {regione.capitalize()}, 
-               --> provincia di {provincia.capitalize()}, 
-               --> città di {città.capitalize()}"""
-
     #create starting message
-    create_telegram_message(TOKEN, chat_id, starting_text)
     create_telegram_message(TOKEN, chat_id, "Starting flat search...")
 
     #----------------------------------------------immobiliare.it----------------------------------------------
@@ -95,5 +88,8 @@ def searcher_appartamenti(regione, provincia, città, TOKEN, chat_id):
     tot_apt = n_subito + n_immobiliare
     create_telegram_message(TOKEN, chat_id, f"Totale appartamenti trovati: {tot_apt}")
     final_results = pd.concat([subito_results, immobiliare_results])
+
+    #TODO 
+    #se tot_apt >> N, crea un'opzione che ti mostri solo un file excel (N-->200)
 
     update_results(final_results, TOKEN, chat_id)
