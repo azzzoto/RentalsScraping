@@ -1,9 +1,8 @@
 import logging
-import pandas as pd
 from telegram.ext import Application, CommandHandler
 from bot import start, unset, set_search
 
-#bot settings - qui dovresti importarlo direttamente come file e non così zozzo
+#bot settings
 with open("TOKEN.txt", "r") as f:
     TOKEN = f.read()
 

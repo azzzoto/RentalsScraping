@@ -1,6 +1,5 @@
 import bs4
 import requests
-from tqdm import tqdm
 import pandas as pd
 
 def next_page_subito(num, url):
