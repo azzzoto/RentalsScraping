@@ -29,7 +29,9 @@ async def unset(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 async def set_search(update: Update, context: ContextTypes.DEFAULT_TYPE) -> list:
     """Add a job to the queue."""
-    TOKEN = "6285394546:AAGn-Z-iwI-jY6RPguUdyBpt16JXGq-tByo"
+    with open("TOKEN.txt", "r") as f:
+        TOKEN = f.read()
+        
     chat_id = update.effective_message.chat_id
     try:
         #args is a list containing regione, provincia e città

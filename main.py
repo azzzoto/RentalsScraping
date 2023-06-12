@@ -4,7 +4,8 @@ from telegram.ext import Application, CommandHandler
 from bot import start, unset, set_search
 
 #bot settings - qui dovresti importarlo direttamente come file e non così zozzo
-TOKEN = "6285394546:AAGn-Z-iwI-jY6RPguUdyBpt16JXGq-tByo"
+with open("TOKEN.txt", "r") as f:
+    TOKEN = f.read()
 
 #Enable logging
 logging.basicConfig(
