@@ -1,4 +1,4 @@
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram.ext import ContextTypes
 from telegram import Update
 from utils import searcher_appartamenti
 import time
@@ -57,9 +57,6 @@ async def set_search(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
                 name=str(chat_id)
                 )
             time.sleep(30*60)
-
-        if job_removed:
-            text += "La ricerca precedente è stata eliminata."
         
     except (IndexError, ValueError):
         await update.effective_message.reply_text("Try again: '/ImpostaRicerca <regione provincia città>'")
