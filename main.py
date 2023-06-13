@@ -18,8 +18,8 @@ def main(TOKEN) -> None:
 
     # on different commands - answer in Telegram
     application.add_handler(CommandHandler(["start", "help"], start))
-    application.add_handler(CommandHandler("ImpostaRicerca", set_search))
     application.add_handler(CommandHandler("unset", unset))
+    application.add_handler(CommandHandler("ImpostaRicerca", set_search))
 
     # Run the bot until the user presses Ctrl-C
     application.run_polling()
