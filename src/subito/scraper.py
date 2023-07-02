@@ -13,7 +13,7 @@ def df_maker_subito(url):
     try:
         page_subito.raise_for_status()
         soup = bs4.BeautifulSoup(page_subito.text, "html.parser")
-        products_list = soup.find(class_ = "ListingContainer_container__4DQ56 container")
+        products_list = soup.find(class_ = "ItemListContainer_container__SjEc1")
         products_list_items_annunci = products_list.find_all(class_ = "items__item item-card item-card--big BigCard-module_card__Exzqv")
 
         constructor = []
